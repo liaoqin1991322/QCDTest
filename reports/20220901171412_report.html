@@ -1,0 +1,2477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+       <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">QCD测试项目--测试生成的报告</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">liaoqin</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2022-09-01 17:14:12</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">4.76 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">59</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">49</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">8</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">2</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">0</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">测试项目--测试生成的报告</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>TestWithDraw</option>
+                        
+                            <option>TestRecharge</option>
+                        
+                            <option>TestLogin</option>
+                        
+                            <option>TestAddAudit</option>
+                        
+                            <option>TestAudit</option>
+                        
+                            <option>TestInvest</option>
+                        
+                            <option>TestRegister</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_001</td>
+                    <td>注册成功-没昵称</td>
+                    <td>0.134s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '13392860747', 'pwd': 'abc123456'} 预期结果： {'code': 0, 'msg': 'OK'}
+实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3537, 'reg_name': '小柠檬', 'mobile_phone': '13392860747'}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+13392860747数据库为：1
+test_register_001 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_002</td>
+                    <td>注册成功-有昵称</td>
+                    <td>0.123s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '13369400184', 'pwd': 'abc123456', 'reg_name': '油粑粑'} 预期结果： {'code': 0, 'msg': 'OK'}
+实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3538, 'reg_name': '油粑粑', 'mobile_phone': '13369400184'}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+13369400184数据库为：1
+test_register_002 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_003</td>
+                    <td>手机号含非法字符</td>
+                    <td>0.06s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '123asds', 'pwd': 'abc123456'} 预期结果： {'code': 2, 'msg': '无效的手机格式'}
+实际结果： {'code': 2, 'msg': '无效的手机格式', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_003 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_004</td>
+                    <td>手机号长度大于11位</td>
+                    <td>0.0608s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '138888877771', 'pwd': 'abc123456'} 预期结果： {'code': 2, 'msg': '无效的手机格式'}
+实际结果： {'code': 2, 'msg': '无效的手机格式', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_004 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_005</td>
+                    <td>手机号长度小于11位</td>
+                    <td>0.063s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '123', 'pwd': 'abc123456'} 预期结果： {'code': 2, 'msg': '无效的手机格式'}
+实际结果： {'code': 2, 'msg': '无效的手机格式', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_005 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_006</td>
+                    <td>手册为空</td>
+                    <td>0.0557s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '', 'pwd': 'abc123456'} 预期结果： {'code': 1, 'msg': '手机号为空'}
+实际结果： {'code': 1, 'msg': '手机号为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_006 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_007</td>
+                    <td>手机已注册</td>
+                    <td>0.0608s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '13888887777', 'pwd': '123456789'} 预期结果： {'code': 2, 'msg': '账号已存在'}
+实际结果： {'code': 2, 'msg': '账号已存在', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_007 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_008</td>
+                    <td>密码为空</td>
+                    <td>0.0513s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '18677546769', 'pwd': ''} 预期结果： {'code': 1, 'msg': '密码为空'}
+实际结果： {'code': 1, 'msg': '密码为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_008 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_009</td>
+                    <td>密码长度小于8位</td>
+                    <td>0.0523s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '18677546769', 'pwd': '123456'} 预期结果： {'code': 2, 'msg': '密码格式为8到16位'}
+实际结果： {'code': 2, 'msg': '密码格式为8到16位', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_009 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_010</td>
+                    <td>密码长度大于16位</td>
+                    <td>0.0585s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '18677546769', 'pwd': '123456'} 预期结果： {'code': 2, 'msg': '密码格式为8到16位'}
+实际结果： {'code': 2, 'msg': '密码格式为8到16位', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_010 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_011</td>
+                    <td>类型非法</td>
+                    <td>0.0546s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '18677546769', 'pwd': 'abc123456', 'type': 2} 预期结果： {'code': 2, 'msg': '不支持的用户类型'}
+实际结果： {'code': 2, 'msg': '不支持的用户类型', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_011 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_012</td>
+                    <td>类型为管理员</td>
+                    <td>0.123s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '13364178613', 'pwd': 'abc123456', 'type': 0} 预期结果： {'code': 0, 'msg': 'OK'}
+实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3539, 'reg_name': '小柠檬', 'mobile_phone': '13364178613'}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+13364178613数据库为：1
+test_register_012 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="TestRegister">TestRegister</td>
+                    <td>test_register_013</td>
+                    <td>昵称大于10位</td>
+                    <td>0.0617s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'mobile_phone': '13354705474', 'pwd': 'abc123456', 'reg_name': '油粑粑啊啊啊啊啊啊啊啊啊'} 预期结果： {'code': 2, 'msg': '用户昵称长度超过10位'}
+实际结果： {'code': 2, 'msg': '用户昵称长度超过10位', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_register_013 (test_01register.TestRegister)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="TestLogin">TestLogin</td>
+                    <td>test_login_001</td>
+                    <td>登录成功</td>
+                    <td>0.0576s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 0.0, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1, 'token_info': {'token_type': 'Bearer', 'expires_in': '2022-09-01 17:19:13', 'token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1M30.Lg6EAsSosUiKeqfAO2SsrPFm9LIScysBY1P1JPNff5_BqEREl6Gau2Bnd8kQC2rQrJD3z5IiDSHstABXtjmxfw'}}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_login_001 (test_02login.TestLogin)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td class="TestLogin">TestLogin</td>
+                    <td>test_login_002</td>
+                    <td>手机号为空</td>
+                    <td>0.0655s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 1, 'msg': '手机号码为空'}
+###实际结果： {'code': 1, 'msg': '手机号码为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_login_002 (test_02login.TestLogin)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td class="TestLogin">TestLogin</td>
+                    <td>test_login_003</td>
+                    <td>密码为空</td>
+                    <td>0.0519s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 1, 'msg': '密码为空'}
+###实际结果： {'code': 1, 'msg': '密码为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_login_003 (test_02login.TestLogin)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td class="TestLogin">TestLogin</td>
+                    <td>test_login_004</td>
+                    <td>账号错误</td>
+                    <td>0.0787s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 1001, 'msg': '账号信息错误'}
+###实际结果： {'code': 2, 'msg': '无效的手机格式', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_login_004 (test_02login.TestLogin)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_02login.py", line 68, in test_login
+    raise  e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_02login.py", line 59, in test_login
+    assert_def.assertDictIn(excepted, res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 1001, 'msg': '账号信息错误'} not in {'code': 2, 'msg': '无效的手机格式', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>18</td>
+                    <td class="TestLogin">TestLogin</td>
+                    <td>test_login_005</td>
+                    <td>密码错误</td>
+                    <td>0.0577s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 1001, 'msg': '账号信息错误'}
+###实际结果： {'code': 1001, 'msg': '账号信息错误', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_login_005 (test_02login.TestLogin)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>19</td>
+                    <td class="TestLogin">TestLogin</td>
+                    <td>test_login_006</td>
+                    <td>手机号为非法字符</td>
+                    <td>0.0559s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '无效的手机格式'}
+###实际结果： {'code': 2, 'msg': '无效的手机格式', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_login_006 (test_02login.TestLogin)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>20</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_001</td>
+                    <td>充值成功</td>
+                    <td>0.172s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>sql= select leave_amount from futureloan.member t  where t.mobile_phone='13888887788'
+充值前的金额为： 0.00
+###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 100.0, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+充值后的金额为： 100.00
+test_recharge_001 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>21</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_002</td>
+                    <td>充值金额-1元</td>
+                    <td>0.0578s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '余额必须大于0并且小于或者等于500000'}
+###实际结果： {'code': 2, 'msg': '余额必须大于0并且小于或者等于500000', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_recharge_002 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>22</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_003</td>
+                    <td>充值金额500001元</td>
+                    <td>0.0549s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '余额必须大于0并且小于或者等于500000'}
+###实际结果： {'code': 2, 'msg': '余额必须大于0并且小于或者等于500000', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_recharge_003 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>23</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_004</td>
+                    <td>用户不存在</td>
+                    <td>0.0715s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '会员不存在'}
+###实际结果： {'code': 1007, 'msg': '无权限访问，请检查参数', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_recharge_004 (test_03recharge.TestRecharge)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_03recharge.py", line 92, in test_recharge
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_03recharge.py", line 76, in test_recharge
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 2, 'msg': '会员不存在'} not in {'code': 1007, 'msg': '无权限访问，请检查参数', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>24</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_005</td>
+                    <td>用户为非法字符</td>
+                    <td>0.0547s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '数字格式化异常'}
+###实际结果： {'code': 2, 'msg': '数字格式化异常', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_recharge_005 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>25</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_006</td>
+                    <td>金额为非法字符</td>
+                    <td>0.0822s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '数字格式化异常'}
+###实际结果： {'code': 2, 'msg': '数字格式化异常', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_recharge_006 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>26</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_007</td>
+                    <td>充值成功一位小数</td>
+                    <td>0.193s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>sql= select leave_amount from futureloan.member t  where t.mobile_phone='13888887788'
+充值前的金额为： 100.00
+###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 200.1, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+充值后的金额为： 200.10
+test_recharge_007 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>27</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_008</td>
+                    <td>充值成功二位小数</td>
+                    <td>0.234s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>sql= select leave_amount from futureloan.member t  where t.mobile_phone='13888887788'
+充值前的金额为： 200.10
+###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 300.22, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+充值后的金额为： 300.22
+test_recharge_008 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>28</td>
+                    <td class="TestRecharge">TestRecharge</td>
+                    <td>test_recharge_009</td>
+                    <td>充值失败三位小数</td>
+                    <td>0.0686s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '余额小数超过两位'}
+###实际结果： {'code': 2, 'msg': '余额小数超过两位', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_recharge_009 (test_03recharge.TestRecharge)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>29</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_001</td>
+                    <td>提现成功-整数</td>
+                    <td>0.0748s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 290.22, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_001 (test_04withdraw.TestWithDraw)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>30</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_002</td>
+                    <td>提现成功-1位小数</td>
+                    <td>0.0653s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 280.12, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_002 (test_04withdraw.TestWithDraw)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>31</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_003</td>
+                    <td>提现成功-2位小数</td>
+                    <td>0.0716s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 269.9, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_003 (test_04withdraw.TestWithDraw)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>32</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_004</td>
+                    <td>提现成功-50万</td>
+                    <td>0.0801s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 0, 'msg': 'OK'}
+###实际结果： {'code': 1002, 'msg': '余额不足', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_004 (test_04withdraw.TestWithDraw)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 55, in test_with_draw
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 51, in test_with_draw
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 0, 'msg': 'OK'} not in {'code': 1002, 'msg': '余额不足', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>33</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_005</td>
+                    <td>会员id为空</td>
+                    <td>0.0505s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 1, 'msg': '会员id为空'}
+###实际结果： {'code': 1, 'msg': '会员id为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_005 (test_04withdraw.TestWithDraw)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>34</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_006</td>
+                    <td>会员id为小数</td>
+                    <td>0.0656s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '数值参数格式不正确'}
+###实际结果： {'code': 2, 'msg': '数值参数格式不正确', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_006 (test_04withdraw.TestWithDraw)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>35</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_007</td>
+                    <td>提现金额为0</td>
+                    <td>0.0789s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '金额必须大于0并且小于或者等于500000'}
+###实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 269.9, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_007 (test_04withdraw.TestWithDraw)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 55, in test_with_draw
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 51, in test_with_draw
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 2, 'msg': '金额必须大于0并且小于或者等于500000'} not in {'code': 0, 'msg': 'OK', 'data': {'id': 3536, 'leave_amount': 269.9, 'mobile_phone': '13888887788', 'reg_name': '小柠檬', 'reg_time': '2022-09-01 17:14:04.0', 'type': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>36</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_008</td>
+                    <td>提现金额为负数</td>
+                    <td>0.0537s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '金额必须大于0并且小于或者等于500000'}
+###实际结果： {'code': 2, 'msg': '余额必须大于0并且小于或者等于5000000', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_008 (test_04withdraw.TestWithDraw)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 55, in test_with_draw
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 51, in test_with_draw
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 2, 'msg': '金额必须大于0并且小于或者等于500000'} not in {'code': 2, 'msg': '余额必须大于0并且小于或者等于5000000', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>37</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_009</td>
+                    <td>提现金额为空</td>
+                    <td>0.0554s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 1, 'msg': '金额为空'}
+###实际结果： {'code': 1, 'msg': '余额为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_009 (test_04withdraw.TestWithDraw)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 55, in test_with_draw
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 51, in test_with_draw
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 1, 'msg': '金额为空'} not in {'code': 1, 'msg': '余额为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>38</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_010</td>
+                    <td>提现金额-3位小数</td>
+                    <td>0.0548s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '金额小数超过两位'}
+###实际结果： {'code': 2, 'msg': '余额小数超过两位', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_010 (test_04withdraw.TestWithDraw)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 55, in test_with_draw
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 51, in test_with_draw
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 2, 'msg': '金额小数超过两位'} not in {'code': 2, 'msg': '余额小数超过两位', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>39</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_011</td>
+                    <td>提现金额-大于50万</td>
+                    <td>0.0692s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '金额必须大于0并且小于或者等于500000'}
+###实际结果： {'code': 2, 'msg': '余额必须大于0并且小于或者等于5000000', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_011 (test_04withdraw.TestWithDraw)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\case.py", line 615, in run
+    testMethod()
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\site-packages\unittestreport\core\dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 55, in test_with_draw
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_04withdraw.py", line 51, in test_with_draw
+    assert_def.assertDictIn(excepted,res)
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\common\handle_assert.py", line 17, in assertDictIn
+    raise AssertionError("{} not in {}".format(expected,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'code': 2, 'msg': '金额必须大于0并且小于或者等于500000'} not in {'code': 2, 'msg': '余额必须大于0并且小于或者等于5000000', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>40</td>
+                    <td class="TestWithDraw">TestWithDraw</td>
+                    <td>test_with_draw_012</td>
+                    <td>提现金额-非数字</td>
+                    <td>0.0576s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>###预期结果： {'code': 2, 'msg': '数值参数格式不正确'}
+###实际结果： {'code': 2, 'msg': '数值参数格式不正确', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_with_draw_012 (test_04withdraw.TestWithDraw)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>41</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_001</td>
+                    <td>新增项目成功--借款期限为月</td>
+                    <td>0.164s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 0, 'msg': 'OK'}
+新增项目前的总数为： 0
+实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 525, 'member_id': 3536, 'title': '接口自动化测试数据', 'amount': 200.0, 'loan_rate': 12.0, 'loan_term': 12, 'loan_date_type': 1, 'bidding_days': 5, 'create_time': '2022-09-01 17:14:15.0', 'bidding_start_time': None, 'full_time': None, 'status': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+新增项目后的总数为： 1
+test_add_001 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>42</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_002</td>
+                    <td>新增的用户id为空</td>
+                    <td>0.0579s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 1, 'msg': '用户id为空'}
+实际结果： {'code': 1, 'msg': '用户id为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_002 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>43</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_003</td>
+                    <td>新增标题为空</td>
+                    <td>0.0688s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 1, 'msg': '标题为空'}
+实际结果： {'code': 1, 'msg': '标题为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_003 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>44</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_004</td>
+                    <td>新增项目成功--借款金额为整数且借款期限为月</td>
+                    <td>0.163s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 0, 'msg': 'OK'}
+新增项目前的总数为： 1
+实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 526, 'member_id': 3536, 'title': '测试数据', 'amount': 200.0, 'loan_rate': 12.0, 'loan_term': 12, 'loan_date_type': 1, 'bidding_days': 5, 'create_time': '2022-09-01 17:14:16.0', 'bidding_start_time': None, 'full_time': None, 'status': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+新增项目后的总数为： 2
+test_add_004 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>45</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_005</td>
+                    <td>新增借款金额为空</td>
+                    <td>0.0674s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 1, 'msg': '借款金额为空'}
+实际结果： {'code': 1, 'msg': '借款金额为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_005 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>46</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_006</td>
+                    <td>新增借款金额为负数</td>
+                    <td>0.0554s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '借款金额范围错误'}
+实际结果： {'code': 2, 'msg': '借款金额范围错误', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_006 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>47</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_007</td>
+                    <td>借款期限为空</td>
+                    <td>0.0618s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 1, 'msg': '借款金额为空'}
+实际结果： {'code': 1, 'msg': '借款金额为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_007 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>48</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_008</td>
+                    <td>借款期限小于1</td>
+                    <td>0.0609s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '借款利率范围错误'}
+实际结果： {'code': 2, 'msg': '借款利率范围错误', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_008 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>49</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_009</td>
+                    <td>借款期限大于36</td>
+                    <td>0.0627s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '借款利率范围错误'}
+实际结果： {'code': 2, 'msg': '借款利率范围错误', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_009 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>50</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_010</td>
+                    <td>借款期限类型为空</td>
+                    <td>0.0492s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 1, 'msg': '借款日期类型为空'}
+实际结果： {'code': 1, 'msg': '借款日期类型为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_010 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>51</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_011</td>
+                    <td>新增项目成功--借款期限为天</td>
+                    <td>0.179s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 0, 'msg': 'OK'}
+新增项目前的总数为： 2
+实际结果： {'code': 0, 'msg': 'OK', 'data': {'id': 527, 'member_id': 3536, 'title': '测试数据', 'amount': 200.0, 'loan_rate': 12.0, 'loan_term': 12, 'loan_date_type': 2, 'bidding_days': 5, 'create_time': '2022-09-01 17:14:16.0', 'bidding_start_time': None, 'full_time': None, 'status': 1}, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+新增项目后的总数为： 3
+test_add_011 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>52</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_012</td>
+                    <td>借款期限不为1和2</td>
+                    <td>0.0716s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '借款类型不存在'}
+实际结果： {'code': 2, 'msg': '借款类型不存在', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_012 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>53</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_013</td>
+                    <td>借款期限为2且借款期限小于10天</td>
+                    <td>0.0543s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '借款期限单位为天的项目,期限范围为10到45天(包含10天和45天)'}
+实际结果： {'code': 2, 'msg': '借款期限单位为天的项目,期限范围为10到45天(包含10天和45天)', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_013 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>54</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_014</td>
+                    <td>借款期限为2且借款期限大于45天</td>
+                    <td>0.055s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '借款期限单位为天的项目,期限范围为10到45天(包含10天和45天)'}
+实际结果： {'code': 2, 'msg': '借款期限单位为天的项目,期限范围为10到45天(包含10天和45天)', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_014 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>55</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_015</td>
+                    <td>竞标天数为空</td>
+                    <td>0.0512s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 1, 'msg': '竞标期限为空'}
+实际结果： {'code': 1, 'msg': '竞标期限为空', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_015 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>56</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_016</td>
+                    <td>竞标天数小于1天</td>
+                    <td>0.0548s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '竞标期限为1-10天'}
+实际结果： {'code': 2, 'msg': '竞标期限为1-10天', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_016 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>57</td>
+                    <td class="TestAddAudit">TestAddAudit</td>
+                    <td>test_add_017</td>
+                    <td>竞标天数天于10天</td>
+                    <td>0.0627s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>member_id：3536
+headers：{'X-Lemonban-Media-Type': 'lemonban.v2', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOjM1MzYsImV4cCI6MTY2MjAyMzk1NX0.UYt4dvZDLjQL4Dyt36KfAZs3ccKmc-DooeWikWzsyLjhoszCpRXpp9N5q471ZDmBs-vFiDD7crLKzyyrOfabRg'}
+预期结果： {'code': 2, 'msg': '竞标期限为1-10天'}
+实际结果： {'code': 2, 'msg': '竞标期限为1-10天', 'data': None, 'copyright': 'Copyright 柠檬班 © 2017-2019 湖南省零檬信息技术有限公司 All Rights Reserved'}
+test_add_017 (test_05add_audit.TestAddAudit)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>58</td>
+                    <td class="TestAudit">TestAudit</td>
+                    <td>setUpClass </td>
+                    <td>None</td>
+                    <td>0</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\suite.py", line 163, in _handleClassSetUp
+    setUpClass()
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_06audit.py", line 36, in setUpClass
+    cls.admin_login()
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\fixture.py", line 28, in admin_login
+    admin_token = jsonpath(admin_res, "$..token")[0]
+</pre>
+                        
+
+                            <pre>TypeError: 'bool' object is not subscriptable
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>59</td>
+                    <td class="TestInvest">TestInvest</td>
+                    <td>setUpClass </td>
+                    <td>None</td>
+                    <td>0</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\program\python37\lib\unittest\suite.py", line 163, in _handleClassSetUp
+    setUpClass()
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\test_07invest.py", line 36, in setUpClass
+    cls.admin_login()
+</pre>
+                        
+
+                            <pre>  File "D:\pythonProject\QCD_Pro\testcases\fixture.py", line 28, in admin_login
+    admin_token = jsonpath(admin_res, "$..token")[0]
+</pre>
+                        
+
+                            <pre>TypeError: 'bool' object is not subscriptable
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 49, name: '通过'},
+                    {value: 8, name: '失败'},
+                    {value: 2, name: '错误'},
+                    {value: 0, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '83.05%'},
+                data: [{value: '83.05', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>
