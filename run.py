@@ -29,12 +29,12 @@ class RunTest:
         runner.run()
 
         # 4、将测试结果发送到邮件
-        runner.send_email(host='smtp.qq.com',
-                          port=465,
-                          user='403483118@qq.com',
-                          password='zffoxmpoqghhbiig',
-                          to_addrs=['975801281@qq.com','403483118@qq.com'],
-                          is_file=True)
+        # runner.send_email(host='smtp.qq.com',
+        #                   port=465,
+        #                   user='403483118@qq.com',
+        #                   password='zffoxmpoqghhbiig',
+        #                   to_addrs=['975801281@qq.com','403483118@qq.com'],
+        #                   is_file=True)
 
         # #4、将测试结果发送到钉钉
         # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=700050cd7d0d8d4f5adafbf1e23066fa249c432d766e700a4f8c57c7d9eae3d0'
